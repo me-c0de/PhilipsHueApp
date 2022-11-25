@@ -23,7 +23,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value=""/>
+          <text value="localhost:8000"/>
         </properties>
       </component>
       <component id="8f6ba" class="javax.swing.JLabel">

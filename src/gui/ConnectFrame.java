@@ -1,5 +1,7 @@
 package gui;
 
+import api.Controller;
+
 import javax.swing.*;
 
 public class ConnectFrame extends JPanel {
@@ -18,8 +20,8 @@ public class ConnectFrame extends JPanel {
         setVisible(true);*/
         connectButton.addActionListener(e -> {
             String address = textField1.getText();
-            desktopView.setContentPane(new MainFrame());
-            System.out.println(address);
+            //System.out.println(address);
+            desktopView.setContentPane(new MainFrame(new Controller(address, desktopView)));
         });
     }
 }
