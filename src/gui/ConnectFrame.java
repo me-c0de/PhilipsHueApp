@@ -11,7 +11,7 @@ public class ConnectFrame extends JPanel {
 
     public ConnectFrame(DesktopView desktopView) {
         setVisible(true);
-        setSize(450, 150);
+        setSize(600, 450);
         add(mainPanel);
         /*setContentPane(mainPanel);
         setTitle("Phillips Hue Demo");
