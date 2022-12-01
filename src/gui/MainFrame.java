@@ -17,6 +17,7 @@ public class MainFrame extends JPanel {
     private JSlider saturationSlider;
     private JButton saturationChangeButton;
     private JButton weihnachtsmodusAnButton;
+    private JButton refreshLightsButton;
     private boolean weihnachtsmodusIsOn = false;
 
     private Controller controller;
@@ -68,10 +69,18 @@ public class MainFrame extends JPanel {
                 if (weihnachtsmodusIsOn) {
                     weihnachtsmodusAnButton.setText("Weihnachtsmodus an");
                     weihnachtsmodusIsOn = false;
+                    controller.setChristmasMode(false);
                 } else {
                     weihnachtsmodusAnButton.setText("Weihnachtsmodus aus");
                     weihnachtsmodusIsOn = true;
+                    controller.setChristmasMode(true);
                 }
+            }
+        });
+        refreshLightsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.refreshLights();
             }
         });
     }

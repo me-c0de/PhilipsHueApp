@@ -3,6 +3,7 @@ package gui;
 import api.Controller;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class ConnectFrame extends JPanel {
     private JTextField textField1;
@@ -21,7 +22,16 @@ public class ConnectFrame extends JPanel {
         connectButton.addActionListener(e -> {
             String address = textField1.getText();
             //System.out.println(address);
-            desktopView.setContentPane(new MainFrame(new Controller(address, desktopView)));
+            try {
+                Controller controller = new Controller(address, desktopView);
+                desktopView.setContentPane(new MainFrame(controller));
+            } catch (IOException | InterruptedException ex) {
+
+                JOptionPane.showMessageDialog(null, "Error");
+                //throw new RuntimeException(ex);
+            }
+
+
         });
     }
 }

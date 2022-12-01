@@ -10,7 +10,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class RestAPI {
-    private final String baseAPI = "http://localhost:8000/api/";
+    private String baseAPI = "http://localhost:8000/api/";
 
     private final String userName = "newdeveloper";
 
@@ -19,14 +19,14 @@ public class RestAPI {
 
     public int numberOfLights;
 
-    public RestAPI(String baseAPI) {
-        //this.baseAPI = baseAPI;
+    public RestAPI(String baseAPI) throws IOException, InterruptedException {
+        this.baseAPI = baseAPI;
         initLights();
         setLightStatus(1, true);
 
     }
 
-    public void initLights() {
+    public void initLights() throws IOException, InterruptedException {
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create(baseAPI + userName + "/lights"))
                 //.POST(HttpRequest.BodyPublishers.ofString())
@@ -34,11 +34,8 @@ public class RestAPI {
                 .build();
         // System.out.println(httpRequest.uri().toString());
         HttpResponse<String> getResponse = null;
-        try {
-            getResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        getResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
         //System.out.println(getResponse.statusCode());
         //System.out.println(getResponse.body());
 
