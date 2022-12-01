@@ -57,7 +57,6 @@ public class Controller {
   }
 
   public void changeColor(Color color, int index) {
-    System.out.println("Change Color: " + index);
     restAPI.setLightColor(index, color);
   }
 
