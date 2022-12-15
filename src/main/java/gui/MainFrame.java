@@ -2,8 +2,8 @@ package gui;
 
 import api.Controller;
 
+import java.io.IOException;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,12 +32,12 @@ public class MainFrame extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (offOnIsOn) {
-                    controller.setAllLightsOff();
-                    offOnBtn.setText("On");
+                    controller.setLightsOff();
+                    offOnBtn.setText("An");
                     offOnIsOn = !offOnIsOn;
                 } else {
-                    controller.setAllLightsOn();
-                    offOnBtn.setText("Off");
+                    controller.setLightsOn();
+                    offOnBtn.setText("Aus");
                     offOnIsOn = !offOnIsOn;
                 }
             }
@@ -45,33 +45,24 @@ public class MainFrame extends JPanel {
         brightnessChangeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.changeAllBrightness(brightness.getValue());
-            }
-        });
-        changeColorButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JColorChooser colorChooser = new JColorChooser();
-                Color color = JColorChooser.showDialog(null, "Pick a color", Color.white);
-                controller.changeAllColor(color);
+                controller.changeBrightness(brightness.getValue());
             }
         });
         saturationChangeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.changeAllSaturation(saturationSlider.getValue());
+                controller.changeSaturation(saturationSlider.getValue());
             }
         });
         weihnachtsmodusAnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
                 if (weihnachtsmodusIsOn) {
-                    weihnachtsmodusAnButton.setText("Weihnachtsmodus an");
+                    weihnachtsmodusAnButton.setText("Jingle Bells an");
                     weihnachtsmodusIsOn = false;
                     controller.setChristmasMode(false);
                 } else {
-                    weihnachtsmodusAnButton.setText("Weihnachtsmodus aus");
+                    weihnachtsmodusAnButton.setText("Jingle Bells aus");
                     weihnachtsmodusIsOn = true;
                     controller.setChristmasMode(true);
                 }
@@ -80,7 +71,13 @@ public class MainFrame extends JPanel {
         refreshLightsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.refreshLights();
+                try {
+                    controller.refresh();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }

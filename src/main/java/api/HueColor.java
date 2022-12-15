@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class HueColor {
 
-    public static int getHue(Color color) {
+    public static int getColor(Color color) {
         int red = color.getRed();
         int green = color.getGreen();
         int blue = color.getBlue();

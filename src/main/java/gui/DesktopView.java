@@ -17,7 +17,5 @@ public class DesktopView extends JFrame {
 
     public void ChangePane(JPanel panel) {
         setContentPane(panel);
-        /*contentPane.removeAll();
-        contentPane.add(panel);*/
     }
 }
