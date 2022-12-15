@@ -11,7 +11,7 @@ import java.net.http.HttpResponse;
 
 public class Controller {
 
-  private ChristmasThread christmasThread;
+  private JingleBells jingleBells;
 
   private String api = "http://localhost:8000/api/";
 
@@ -119,7 +119,7 @@ public class Controller {
   public void modifyColor(Color color, int index) {
     HttpRequest httpRequest = HttpRequest.newBuilder()
         .uri(URI.create(api + username + "/lights/" + index + "/state"))
-        .PUT(HttpRequest.BodyPublishers.ofString("{\"hue\":" + HueColor.getColor(color) + "}"))
+        .PUT(HttpRequest.BodyPublishers.ofString("{\"hue\":" + ColorUtil.getColor(color) + "}"))
         .build();
 
     try {
@@ -153,22 +153,22 @@ public class Controller {
 
   public void setChristmasMode(boolean setOn) {
     if (setOn) {
-      if (christmasThread == null) {
-        this.christmasThread = new ChristmasThread(this);
+      if (jingleBells == null) {
+        this.jingleBells = new JingleBells(this);
       }
 
-      if (christmasThread.isAlive()) {
-        christmasThread.interrupt();
+      if (jingleBells.isAlive()) {
+        jingleBells.interrupt();
       } else {
-        christmasThread.start();
+        jingleBells.start();
       }
 
     } else {
-      if (christmasThread.isAlive()) {
-        christmasThread.interrupt();
+      if (jingleBells.isAlive()) {
+        jingleBells.interrupt();
         try {
-          christmasThread.join();
-          this.christmasThread = null;
+          jingleBells.join();
+          this.jingleBells = null;
         } catch (InterruptedException e) {
           throw new RuntimeException(e);
         }

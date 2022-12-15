@@ -2,7 +2,7 @@ package api;
 
 import java.awt.*;
 
-public class HueColor {
+public class ColorUtil {
 
     public static int getColor(Color color) {
         int red = color.getRed();

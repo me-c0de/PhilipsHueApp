@@ -5,11 +5,11 @@ import api.Controller;
 import javax.swing.*;
 import java.io.IOException;
 
-public class ConnectFrame extends JPanel {
+public class AddFrame extends JPanel {
     private JButton connect;
     private JPanel mainPanel;
 
-    public ConnectFrame(DesktopView desktopView) {
+    public AddFrame(DesktopView desktopView) {
 
         setVisible(true);
         setSize(720, 550);
@@ -23,8 +23,6 @@ public class ConnectFrame extends JPanel {
 
                 JOptionPane.showMessageDialog(null, "Error");
             }
-
-
         });
     }
 }

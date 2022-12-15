@@ -2,11 +2,11 @@ package api;
 
 import java.awt.*;
 
-public class ChristmasThread extends Thread {
+public class JingleBells extends Thread {
   private Controller controller;
   private boolean isOff = true;
 
-  public ChristmasThread(Controller controller) {
+  public JingleBells(Controller controller) {
     this.controller = controller;
   }
 

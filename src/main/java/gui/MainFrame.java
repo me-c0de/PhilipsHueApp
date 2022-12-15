@@ -13,7 +13,6 @@ public class MainFrame extends JPanel {
     private boolean offOnIsOn = true;
     private JSlider brightness;
     private JButton brightnessChangeButton;
-    private JButton changeColorButton;
     private JSlider saturationSlider;
     private JButton saturationChangeButton;
     private JButton weihnachtsmodusAnButton;
